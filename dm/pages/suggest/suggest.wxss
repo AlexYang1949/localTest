@@ -1,0 +1,31 @@
+.root{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.topImage{
+  width: 500rpx;
+  height: 300rpx;
+}
+.tipsView{
+  margin-top: 50rpx;
+  font-weight: bold;
+}
+.suginput{
+  height: 300rpx;
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  border:2rpx solid #e1e1e1;
+  padding: 20rpx 20rpx 20rpx 20rpx;
+}
+
+.suggestForm{
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.bindButton{
+  margin-top: 80rpx;
+  width: 90%;
+}

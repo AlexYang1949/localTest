@@ -1,0 +1,10 @@
+<view class='root'>
+  <image class='topImage' src='/source/bindTop.png'></image>
+  <text class='tipsView' wx:if="{{!unionId}}">爸妈在哪儿，即刻关注父母位置!</text>
+  <text class='tipsView' wx:if="{{unionId}}"> 我是{{name}}，我想知道您在哪儿!</text>
+  <button class='bindButton' wx:if="{{!unionId}}" open-type='share'>邀请爸妈</button>
+  <form bindsubmit="bindFormSubmit"  wx:if="{{unionId}}">
+    <textarea class='titleInput' placeholder="请输入您和绑定人关系" name="textarea"/>
+    <button class='bindButton' type="primary" form-type="submit"> 同意授权 </button>
+  </form>
+</view>

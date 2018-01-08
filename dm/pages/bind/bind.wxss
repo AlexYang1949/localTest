@@ -1,0 +1,28 @@
+.root{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.topImage{
+  width: 100%;
+  height: 300rpx;
+}
+.tipsView{
+  margin-top: 50rpx;
+  font-weight: bold;
+}
+.bindButton{
+  margin-top: 150rpx;
+  width: 600rpx;
+  background-color: #3DB247;
+  color: white;
+  border-radius: 55rpx;
+}
+.bindText{
+  color: white;
+}
+.titleInput{
+  height: 80rpx;
+  width: 80%;
+  margin-top: 50rpx;
+}

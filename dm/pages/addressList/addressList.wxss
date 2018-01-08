@@ -1,0 +1,47 @@
+.root{
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+}
+.infoRootView{
+  height: 150rpx;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; 
+}
+.iconView{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon{
+  width: 80rpx;
+  height: 80rpx; 
+  border-radius: 40rpx;
+}
+.infoView{
+  height: 100rpx;
+  flex: 4;
+}
+.dateView{
+  display: flex;
+  align-items: center; 
+}
+.date{
+  font-size: 30rpx;
+  color: #9092A5;
+}
+.address{
+  font-size: 30rpx;
+  color: #3a444a;
+}
+.noData{
+  font-size: 35rpx;
+  color: gray;
+  margin-top: 30rpx;
+  width: 100%;
+  text-align: center;
+}

@@ -1,0 +1,18 @@
+<view class='root'>
+    <view class='infoRootView' wx:for="{{memberList}}">
+      <view class='iconView'>
+        <image class='icon' src="{{headUrl}}"></image>
+      </view>
+      <view class='infoView' bindtap='addressList'>
+        <view class='dateView'>
+          <text class='date'>{{item.createAt}}</text>
+        </view>
+        <view class='addressView'>
+          <text class='address'>{{item.location}}</text>
+        </view>
+      </view>
+    </view>
+  <view class='noData' wx:if="{{noData}}">暂无历史记录～</view>
+</view>
+  
+    

@@ -1,0 +1,15 @@
+<view class='root'>
+  <image class='topImage' src='/source/shareTop.png'></image>
+  <view class='tipsView'>
+    <text class='toptips'>一点分享让更多人关爱父母!</text>
+    <text class='bottomtips'>自己和父母绑定后，可以每半个小时获取父母位置的权限，时刻知道父母的位置</text>
+  </view> 
+  <!-- open-type='share' -->
+  <button class='bindButton' bindtap='share' type="primary" >分享到朋友圈</button>
+  <view class='back' wx:if="{{share}}" bindtap='hide'></view>
+  <view class='shareRootView' wx:if="{{share}}">
+    <image class='shareImage' src='/source/share_image.png'></image>
+    <button class='bindButton' bindtap='save' type="primary" >保存分享图</button>
+  </view>
+  
+</view>

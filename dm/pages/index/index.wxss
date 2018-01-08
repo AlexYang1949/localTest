@@ -1,0 +1,156 @@
+.root{
+  justify-content: center;
+}
+.mapView{
+    width: 100%;
+    height: 100vh;
+}
+
+.selectView{
+  position: absolute;
+  top:0rpx;
+  width: 100%;
+  height: 80rpx;
+  background-color: white;
+  display: flex; 
+  flex-direction:row;
+  justify-content: center;  
+  align-items: center;  
+}
+
+.topIconView{
+  width: 50rpx;
+  height: 80rpx; 
+  display: flex;
+  align-items: center; 
+  justify-content: center;  
+}
+
+.topUnIcon{
+  width: 34rpx;
+  height: 40rpx; 
+  margin-left: 20rpx;  
+}
+
+/* .topIcon{
+  width: 50rpx;
+  height: 40rpx; 
+  margin-left: 20rpx; 
+} */
+.suggest{
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  top: 600rpx;
+  right: 30rpx;
+}
+
+.refresh{
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  top: 720rpx;
+  right: 30rpx;
+}
+
+.infoRootView{
+  position: absolute;
+  bottom: 20rpx;
+  left: 40rpx;
+  right: 40rpx;
+  height: 150rpx;
+  background-color: white;
+  border-radius: 5px;
+
+  box-shadow:5rpx 5rpx 0 0 ghostwhite;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; 
+}
+.iconView{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.icon{
+  width: 80rpx;
+  height: 80rpx; 
+  border-radius:40rpx;
+}
+.infoView{
+  height: 100rpx;
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.dateView{
+  display: flex;
+  align-items: center; 
+}
+
+.name{
+  font-size: 36rpx;
+  margin-right: 20rpx;
+}
+.date{
+  font-size: 30rpx;
+  color: #9092A5;
+}
+.address{
+  font-size: 28rpx;
+}
+
+.selectListView{
+  position: absolute;
+  padding-top: 20rpx; 
+  top: 80rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+}
+
+.selectRootView{
+  height: 100rpx;
+  width: 300rpx;
+  align-items: center; 
+  flex-direction: row;
+  display: flex;
+}
+
+.selectListCell{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  flex: 10;
+}
+
+.selecticonView{
+  display: flex;
+  align-items: center;
+}
+
+.selecticon{
+  height: 50rpx;
+  width: 50rpx;
+  margin-left: 20rpx;
+  border-radius: 25rpx;
+}
+
+.selecttitle{
+  font-size: 36rpx;
+  margin-left: 40rpx;
+}
+
+.bottom{
+  flex: 1;
+  width: 100%;
+  height: 1rpx;
+  background-color: #f3f3f3;
+}

@@ -1,0 +1,44 @@
+<view class='root'>
+   <map class='mapView' markers='{{markers}}' longitude='{{memberList[selectIndex].longitude}}' latitude='{{memberList[selectIndex].latitude}}' wx:if='{{memberList.length!=0}}'>
+    <!-- title选择 -->
+    <cover-view class='selectView' bindtap='selectTitle'>
+      <cover-view class='titleView'>{{memberList[selectIndex].nickname}}</cover-view>
+      <cover-view class='topIconView'>
+      <!-- <cover-image class='topIcon' src='/source/bottom_arrow.png' wx:if="{{selected}}"></cover-image> -->
+       <cover-image class='topUnIcon' src='/source/right_arrow.png'></cover-image> 
+      </cover-view>
+    </cover-view>
+    <!-- title选择view  -->
+    <cover-view class='selectListView' wx:if="{{selected}}">
+    <cover-view class='selectListCell' wx:for="{{memberList}}" bindtap="selectItem" data-index="{{index}}">
+      <cover-view class='selectRootView'>
+        <cover-view class='selecticonView'>
+        <cover-image class='selecticon' src="{{item.headUrl}}"></cover-image>
+        </cover-view>
+        <cover-view class='selecttitle'>{{item.nickname}}</cover-view>
+      </cover-view>
+      <cover-view class='bottom'></cover-view>
+    </cover-view>
+  </cover-view>
+  <!-- 建议、刷新 -->
+  <cover-image bindtap='suggest' class='suggest' src='/source/icon_suggest.png'>
+  </cover-image>
+  <cover-image bindtap='refresh' class='refresh' src='/source/icon_refresh.png'>
+  </cover-image>
+    <!--下面信息  -->
+  <cover-view class='infoRootView'>
+    <cover-view class='iconView'>
+      <cover-image class='icon' src="{{memberList[selectIndex].headUrl}}"></cover-image>
+    </cover-view>
+    <cover-view class='infoView' bindtap='addressList'>
+      <cover-view class='dateView'>
+        <cover-view class='name'>{{memberList[selectIndex].nickname}}</cover-view>
+        <cover-view class='date'>{{memberList[selectIndex].createAt}}</cover-view>
+      </cover-view>
+      <cover-view class='addressView'>
+        <cover-view class='address'>{{memberList[selectIndex].location}}</cover-view>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+  </map> 
+</view>
