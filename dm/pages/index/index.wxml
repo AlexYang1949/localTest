@@ -2,7 +2,7 @@
    <map class='mapView' markers='{{markers}}' longitude='{{memberList[selectIndex].longitude}}' latitude='{{memberList[selectIndex].latitude}}' wx:if='{{memberList.length!=0}}'>
     <!-- title选择 -->
     <cover-view class='selectView' bindtap='selectTitle'>
-      <cover-view class='titleView'>{{memberList[selectIndex].nickname}}</cover-view>
+      <cover-view class='titleView'>{{memberList[selectIndex].title}}</cover-view>
       <cover-view class='topIconView'>
       <!-- <cover-image class='topIcon' src='/source/bottom_arrow.png' wx:if="{{selected}}"></cover-image> -->
        <cover-image class='topUnIcon' src='/source/right_arrow.png'></cover-image> 
@@ -15,7 +15,7 @@
         <cover-view class='selecticonView'>
         <cover-image class='selecticon' src="{{item.headUrl}}"></cover-image>
         </cover-view>
-        <cover-view class='selecttitle'>{{item.nickname}}</cover-view>
+        <cover-view class='selecttitle'>{{item.title}}</cover-view>
       </cover-view>
       <cover-view class='bottom'></cover-view>
     </cover-view>

@@ -13,7 +13,7 @@ Page({
   },
   onShow:function(){
     // 登录
-    this.getHomeData() 
+    this.getHomeData()
   },
   //事件处理函数
   selectTitle: function(){
@@ -39,18 +39,13 @@ Page({
   },
   addressList:function(){
     var member = this.data.memberList[this.data.selectIndex]
-    
     wx.navigateTo({
       url: '../addressList/addressList?unionId=' + member.unionId + '&title=' + member.title + '&headUrl=' + member.headUrl
     })
   },
+
   onLoad: function (options) {
-    var that = this
-    wx.login({
-      success: res => {
-        that.loginIn(res.code)
-      }
-    })
+    app.isLogin(this.getHomeData)
   },
   loginIn:function(code){
     var that = this
@@ -61,8 +56,7 @@ Page({
       },
       success: function (res) {
         app.globalData.loginInfo = res.data.result
-        // that.getInfo()
-        that.getHomeData()
+        that.getInfo()
         console.log('授权成功', app.globalData.loginInfo)
       },
       fail: function (res) {
@@ -71,6 +65,7 @@ Page({
     })
   },
   getInfo:function(){
+    var that = this
     wx.getSetting({
       withCredentials: true,
       success: res => {
@@ -80,20 +75,19 @@ Page({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               app.globalData.userInfo = res.userInfo
-              console.log('getUserInfo', res)
               var data = {
                 accessToken: app.globalData.loginInfo.accessToken,
                 openId: app.globalData.loginInfo.openId,
                 encryptedData: res.encryptedData,
                 iv: res.iv
               }
-              console.log('getUid',data)
               utils.post({
                 url: app.API.getInfo,
                 data:data,
                 success:function(res){
-                  app.globalData.loginInfo.unionId = res.result.userName
-                  console.log(app.globalData.loginInfo.unionId)
+                  console.log('getUid', res)
+                  app.globalData.loginInfo.unionId = res.data.result.userName
+                  that.getHomeData()
                 },
                 fail:function(res){
                   console.log('getUidFail',res)
@@ -112,15 +106,17 @@ Page({
       }
     })
   },
-  getHomeData:function(){
+  getHomeData : function(){
+    if(!app.globalData.loginInfo.unionId) return
     var that = this
     wx.showLoading({ title:'正在加载数据'})
-    console.log(app.globalData.openId)
+    console.log('uid',app.globalData.loginInfo.unionId)
     utils.post({
       url: app.API.home,
       data:{
         openId: app.globalData.loginInfo.openId,
-        accessToken: app.globalData.loginInfo.accessToken
+        accessToken: app.globalData.loginInfo.accessToken,
+        munionId: app.globalData.loginInfo.unionId
       },
       success:function(res){
         var data = res.data
