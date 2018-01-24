@@ -1,25 +1,25 @@
 <view class='root'>
-   <map class='mapView' markers='{{markers}}' longitude='{{memberList[selectIndex].longitude}}' latitude='{{memberList[selectIndex].latitude}}' wx:if='{{memberList.length!=0}}'>
-    <!-- title选择 -->
-    <cover-view class='selectView' bindtap='selectTitle'>
-      <cover-view class='titleView'>{{memberList[selectIndex].title}}</cover-view>
-      <cover-view class='topIconView'>
-      <!-- <cover-image class='topIcon' src='/source/bottom_arrow.png' wx:if="{{selected}}"></cover-image> -->
-       <cover-image class='topUnIcon' src='/source/right_arrow.png'></cover-image> 
-      </cover-view>
-    </cover-view>
+       <!-- title选择 -->
+  <view class='selectView' bindtap='selectTitle'>
+    <view class='titleView'>{{memberList[selectIndex].title}}</view>
+    <view class='topIconView'>
+      <image class='topIcon' src='/source/bottom_arrow.png' wx:if="{{selected}}"></image> 
+      <image class='topUnIcon' src='/source/right_arrow.png' wx:if="{{!selected}}"></image> 
+    </view>
+  </view>   
     <!-- title选择view  -->
-    <cover-view class='selectListView' wx:if="{{selected}}">
-    <cover-view class='selectListCell' wx:for="{{memberList}}" bindtap="selectItem" data-index="{{index}}">
-      <cover-view class='selectRootView'>
-        <cover-view class='selecticonView'>
-        <cover-image class='selecticon' src="{{item.headUrl}}"></cover-image>
-        </cover-view>
-        <cover-view class='selecttitle'>{{item.title}}</cover-view>
-      </cover-view>
-      <cover-view class='bottom'></cover-view>
-    </cover-view>
-  </cover-view>
+  <view class='selectListView' wx:if="{{selected}}">
+    <view class='selectListCell' wx:for="{{memberList}}" bindtap="selectItem" data-index="{{index}}">
+      <view class='selectRootView'>
+        <view class='selecticonView'>
+          <image class='selecticon' src="{{item.headUrl}}"></image>
+        </view>
+        <view class='selecttitle'>{{item.title}}</view>
+      </view>
+      <view class='bottom'></view>
+    </view>
+  </view>
+  <map class='mapView' markers='{{markers}}' longitude='{{memberList[selectIndex].longitude}}' latitude='{{memberList[selectIndex].latitude}}' wx:if='{{memberList[selectIndex].location&&!selected}}'>
   <!-- 建议、刷新 -->
   <cover-image bindtap='suggest' class='suggest' src='/source/icon_suggest.png'>
   </cover-image>
@@ -36,9 +36,22 @@
         <cover-view class='date'>{{memberList[selectIndex].createAt}}</cover-view>
       </cover-view>
       <cover-view class='addressView'>
-        <cover-view class='address'>{{memberList[selectIndex].location}}</cover-view>
+        <cover-view class='address'>{{memberList[selectIndex].location?memberList[selectIndex].location:"暂无位置信息"}}</cover-view>
       </cover-view>
     </cover-view>
   </cover-view>
   </map> 
+<view class='noDataView' wx:if="{{!memberList[selectIndex].location&&!selected}}">
+  <image src='/source/home_nodata.png' class='noImage'></image>
+  <view class='cg mt mb'>暂时没有位置信息</view>
+    <view class='f36 w100'>可能遇到了以下问题</view>
+    <view class='f30 w100 mt'>1、您父母可能没有安装【大猫老年桌面】。</view>
+    <view class='copybutton mt' bindtap='copy'>复制链接</view>
+    <view class='f30 w100 mt cgreen'>复制链接后在浏览器中打开即可下载安装</view>
+    <view class='f30 w100 mt cg'>或者在百度、360安卓应用市场，或百度搜索大猫老年桌面，下载最新版本</view>
+    <view class='f30 w100 mt'>2、可能没有进行位置授权</view>
+    <view class='f30 w100 mt cg'>在装有大猫老年桌面的手机中，打开设置->应用权限设置->找到大猫老年桌面，点击信任此应用，授权位置权限和其他所有权限即可。</view>
+    <view class='f30 w100 mt'>3、可能没有联网</view>
+    <view class='f30 w100 mt cg'>请您检查手机网络</view>
+  </view>
 </view>

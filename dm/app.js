@@ -11,12 +11,7 @@ App({
     getInfo: "siteapi/wp/getInfo"
   },
   onLaunch: function (options) {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    // wx.setStorageSync('logs', logs)
-    var that = this
-    // that.isLogin(null)
+    
   },
   isLogin:function(complete){
     var that = this
@@ -38,10 +33,53 @@ App({
         that.globalData.loginInfo = res.data.result
         that.getInfo(complete)
         console.log('app授权成功', that.globalData.loginInfo)
+        wx.hideLoading()
       },
       fail: function (res) {
         console.log('app授权失败', res)
         wx.hideLoading()
+      }
+    })
+  }, 
+  getInfo: function (complete) {
+    var that = this
+    wx.getSetting({
+      withCredentials: true,
+      success: res => {
+        console.log('123')
+        if (res.authSetting['scope.userInfo']) {
+          that.getLocalUserInfo(complete)
+        } else {
+          console.log('321')
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success: function () {
+              that.getLocalUserInfo(complete)
+            },
+            fail:res=>{
+              wx.showModal({
+                title: '提示',
+                content: '请允许访问用户信息',
+                showCancel:false,
+                success: function (res) {
+                  wx.openSetting({
+                    success: res => {
+                      that.getLocalUserInfo(complete)
+                    }
+                  })
+                }
+              }) 
+            }
+          })
+        }
+      },
+      fail: function () {
+        console.log('获取用户授权信息失败')
+        wx.showModal({
+          title: '提示',
+          content: '获取用户授权信息失败',
+          showCancel: false
+        })
       }
     })
   },
@@ -57,12 +95,13 @@ App({
           encryptedData: res.encryptedData,
           iv: res.iv
         }
+        console.log('获取uid data',data)
         utils.post({
           url: that.API.getInfo,
           data: data,
           success: function (res) {
             console.log('app getUid', res)
-            that.globalData.loginInfo.unionId = res.data.result.userName
+            that.globalData.loginInfo.unionId = res.data.result.unionId
             completed()
           },
           fail: function (res) {
@@ -77,35 +116,13 @@ App({
         if (this.userInfoReadyCallback) {
           this.userInfoReadyCallback(res)
         }
-      }
-    })
-  },
-  getInfo: function (complete) {
-    var that = this
-    wx.getSetting({
-      withCredentials: true,
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          that.getLocalUserInfo(complete)
-        } else {
-          wx.authorize({
-            scope: 'scope.userInfo',
-            success() {
-              that.getLocalUserInfo(complete)
-            }
-          })
-        }
       },
-      fail:function(){
-        console.log('获取用户授权信息失败')
-        wx.showModal({
-          title: '提示',
-          content: '获取用户授权信息失败',
-          showCancel: false
-        })
+      fail: res=>{
+        console.log('获取用户信息失败',res)
       }
     })
   },
+  
   globalData: {
     userInfo: null,
     loginInfo:null

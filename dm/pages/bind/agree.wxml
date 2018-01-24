@@ -1,0 +1,8 @@
+<view class='root'>
+  <image class='topImage' src='/source/bindTop.png' ></image>
+  <text class='tipsView' wx:if="{{name}}"> 我是{{name}}，我想知道您在哪儿!</text>  
+  <form class='form' bindsubmit="bindFormSubmit">
+    <textarea class='titleInput' placeholder="请输入邀请人身份" name='textarea'/>
+    <button class='bindButton' type="primary" form-type="submit">同意授权</button>
+  </form>
+</view>

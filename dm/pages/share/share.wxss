@@ -5,7 +5,7 @@
 }
 .topImage{
   width: 100%;
-  height: 600rpx;
+  height: 636rpx;
 }
 .tipsView{
   position: absolute;
@@ -54,14 +54,20 @@
 
 .shareRootView{
   position: absolute;
-  top: 100rpx;
-  width: 80%;
+  top: 60rpx;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center; 
 }
 .shareImage{
-  height: 700rpx;
-  margin-bottom: 200rpx;
-  width: 100%;
+  height: 800rpx;
+  width: 500rpx;
+}
+.saveButton{
+  margin-top: 60rpx;
+  width: 70%;
+  background-color: #3DB247;
+  color: white;
+  border-radius: 55rpx;
 }

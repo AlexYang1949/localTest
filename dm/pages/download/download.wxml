@@ -1,0 +1,10 @@
+<view class='root'>
+  <image src='/source/damao.png' class='icon'></image>
+  <view class='f30 b40 cg'>大猫老年桌面</view>
+  <view class='f40'>大字体,更懂您！</view>
+  <view class='f40'>实时了解孩子对您的关心!</view>
+  <view class='copyButton' bindtap='copy'>复制链接</view>
+  <view class='cgreen f30 b40'>复制链接后在浏览器中打开即可下载安装</view>
+  <view class='w70 f30 ts mt cg'>或者在百度、360安卓应用市场，</view>
+  <view class='w70 f30 ts cg'>或百度搜索【大猫老年桌面】，下载最新版本</view>
+</view>

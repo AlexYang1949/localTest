@@ -4,7 +4,9 @@
     "pages/share/share",
     "pages/bind/bind",
     "pages/addressList/addressList",
-    "pages/suggest/suggest"
+    "pages/suggest/suggest",
+    "pages/download/download",
+    "pages/bind/agree"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -15,6 +15,7 @@ const formatNumber = n => {
 }
 
 var post = function(req) {
+  
   wx.request({
     url: 'https://www.witcat.cn/' + req.url,
     data: req.data,
@@ -22,8 +23,14 @@ var post = function(req) {
       'content-type': 'application/x-www-form-urlencoded'
     },
     method: 'POST',
-    success: req.success,
-    fail : req.fail,
+    success: function(res){
+      console.log(res)
+      req.success(res)
+    } ,
+    fail : function(res){
+      console.log(res)
+      req.fail(res)
+    },
     complete: req.complete
   })
 }

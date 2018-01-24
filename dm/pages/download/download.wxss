@@ -1,0 +1,53 @@
+.root{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.icon{
+  width: 142rpx;
+  height: 142rpx;
+  margin-top: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.copyButton{
+  width: 450rpx;
+  height: 90rpx;
+  border-radius: 45rpx;
+  background-color: #3DB247;
+  color: white;
+  text-align: center;
+  line-height: 90rpx;
+  margin-top: 200rpx;
+  margin-bottom: 60rpx;
+}
+
+.cgreen{
+  color: #3DB247;
+}
+
+.f30{
+  font-size: 30rpx;
+}
+
+.f40{
+  font-size: 40rpx;
+}
+.b40{
+  margin-bottom: 40rpx;
+}
+
+.w70{
+  width: 90%;
+}
+
+.cg{
+  color: #b9b9b9;
+}
+
+.mt{
+  margin-top: 60rpx;
+}
+.ts{
+  text-align: center;
+}
