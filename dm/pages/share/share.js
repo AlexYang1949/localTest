@@ -2,7 +2,6 @@
 const app = getApp()
 var utils = require("../../utils/util.js");
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -19,25 +18,67 @@ Page({
       share: false
     })
   },
-  save: function(){
+  saveImage: function(){
     var that = this
-    wx.saveImageToPhotosAlbum({
-      filePath: '/source/share_image.png',
-      success:function(res){
-        that.setData({
-          share: false
-        })
-        wx.showToast({
-          title: '保存成功'
-        })
-        
-      },fail:function(res){
-        that.setData({
-          share: false
+    wx.downloadFile({
+      url:'https://www.witcat.cn/apk/proshare.png',
+      success:res=>{
+        console.log(res)
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success: function (res) {
+            console.log("保存成功")
+            that.setData({
+              share: false
+            })
+            wx.showToast({
+              title: '保存成功'
+            })
+
+          }, fail: function (res) {
+            console.log("保存失败", res)
+            that.setData({
+              share: false
+            })
+            wx.getSetting({
+              withCredentials: true,
+              success: res => {
+                console.log("getSetting success")
+                if (!res.authSetting['scope.writePhotosAlbum']) {
+                  wx.authorize({
+                    scope: 'scope.writePhotosAlbum',
+                    success: function () {
+                      wx.showToast({
+                        title: '请重试',
+                      })
+                      console.log("authorize success")
+                    },
+                    fail: res => {
+                      console.log("authorize fail")
+                      wx.showModal({
+                        title: '保存失败',
+                        content: '请开启访问相册权限后重试',
+                        showCancel: false,
+                        success: function (res) {
+                          wx.openSetting({
+                            success: res => {
+                              that.getLocalUserInfo(complete)
+                            }
+                          })
+                        }
+                      })
+                    }
+                  })
+                }
+              },
+              fail: function (res) {
+                console.log("getSetting fail")
+              }
+            })
+          }
         })
       }
     })
-    
   },
   /**
    * 生命周期函数--监听页面加载

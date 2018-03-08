@@ -8,8 +8,8 @@
   <button class='bindButton' bindtap='share' type="primary" >分享到朋友圈</button>
   <view class='back' wx:if="{{share}}" bindtap='hide'></view>
   <view class='shareRootView' wx:if="{{share}}">
-    <image class='shareImage' src='/source/share_image.png'></image>
-    <button class='saveButton' bindtap='save' type="primary" >保存分享图</button>
+    <image class='shareImage' src='https://www.witcat.cn/apk/proshare.png'></image>
+    <button class='saveButton' bindtap='saveImage' type="primary" >保存分享图</button>
   </view>
   
 </view>

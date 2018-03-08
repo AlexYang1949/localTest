@@ -6,15 +6,22 @@
 .topImage{
   width: 100%;
   height: 426rpx;
+  margin-bottom: 50rpx;
 }
 .tipsView{
-  margin-top: 50rpx;
   font-weight: bold;
+  font-size: 46rpx;
+  text-align: center;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
 }
-.shareToBind{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+.backHome{
+  width: 160rpx;
+  height: 160rpx;
+  position: absolute;
+  top: 520rpx;
+  right: 20rpx;
 }
 .bindButton{
   margin-top: 150rpx;
@@ -23,9 +30,10 @@
   color: white;
   border-radius: 55rpx;
 }
+
 .titleInput{
   height: 80rpx;
-  width: 80%;
+  width: 100%;
   margin-top: 50rpx;
   text-align: center;
 }

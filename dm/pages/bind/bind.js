@@ -4,39 +4,124 @@ var utils = require("../../utils/util.js");
 
 Page({
   data: {
-    munionId:'',
-    title:''
+    unionId: '',
+    munionId: '',
+    name: '',
+    title: ''
   },
-  inputTitle:function(e){
-    this.setData({
-      title:e.detail.value
+  backHome:function(e){
+    wx.switchTab({
+      url: '/pages/index/index',
+    })
+  },
+  bindFormSubmit: function (e) {
+    if (!e.detail.value.textarea && !this.data.title) {
+      wx.showModal({
+        title: '提示',
+        content: '请输入邀请人身份'
+      })
+      return;
+    }
+    var title = e.detail.value.textarea ? e.detail.value.textarea : this.data.title
+    this.data.title = title
+    if (!app.globalData.loginInfo.unionId) {
+      app.isLogin(this.bind)
+      console.log('需要授权')
+      return
+    } else {
+      console.log('不需要授权')
+      this.bind()
+    }
+  },
+  bind: function () {
+    var unionId = this.data.unionId
+    var munionId = this.data.munionId
+    if (!unionId) {
+      unionId = app.globalData.loginInfo.unionId
+    }
+    if (!munionId) {
+      munionId = app.globalData.loginInfo.unionId
+    }
+    var data = {
+      openId: app.globalData.loginInfo.openId,
+      accessToken: app.globalData.loginInfo.accessToken,
+      unionId: unionId,
+      munionId: munionId,
+      title: this.data.title
+    }
+    console.log('绑定数据', data)
+    utils.post({
+      url: app.API.bind,
+      data: data,
+      success: function (res) {
+        if (res.data.errorCode == 200) {
+          console.log('绑定成功', res.data)
+          wx.showToast({
+            title: '绑定成功'
+          })
+          wx.navigateTo({
+            url: '/pages/download/download',
+          })
+        } else if (res.data.errorCode == 409){
+          wx.showModal({
+            title: '提示',
+            content: res.data.errorMessage,
+            showCancel: false,
+            success: function (res) {
+              wx.switchTab({
+                url: '/pages/index/index',
+              })
+            }
+          })
+        }
+        else {
+          console.log('绑定失败', res.data)
+          wx.showModal({
+            title: '绑定失败',
+            content: res.data.errorMessage,
+            showCancel: false
+          })
+        }
+      }, fail: function (res) {
+        wx.showModal({
+          title: '绑定失败',
+          content: res.data.errorMessage,
+          showCancel: false
+        })
+      }
     })
   },
   onLoad: function (options) {
-    console.log('load')
     var scene = decodeURIComponent(options.scene)
     var params = null
-    if(options.params){
+    if (options.params) {
       var params = JSON.parse(options.params)
     }
-    if (params){
+    if (params) {
       this.setData({
         name: params.name,
         munionId: params.munionid,
-        title: params.title,
-        sharePage:false
+        title: params.title
       })
-    } else if (scene != 'undefined'){
+    } else if (scene != 'undefined') {
       this.setData({
-        unionId: scene ,
-        sharePage: false
+        unionId: scene
       })
+    }
+    // 检测是否绑定过
+    if (!app.globalData.loginInfo.unionId) {
+      app.isLogin(this.bind)
+      console.log('需要授权')
+      return
+    } else {
+      console.log('不需要授权')
+      this.bind()
     }
     console.log('data', this.data)
   },
 
   onReady: function () {
-  
+
   },
 
   onShow: function () {
@@ -46,42 +131,23 @@ Page({
     }
   },
   onHide: function () {
-  
+
   },
 
   onUnload: function () {
-  
+
   },
 
   onPullDownRefresh: function () {
-  
+
   },
 
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    
-    var that = this
-    var params = {
-      munionid: app.globalData.loginInfo.unionId,
-      name: app.globalData.userInfo.nickName,
-      title: that.data.title
-    }
-    console.log('邀请页面','/pages/bind/bind?params=' + JSON.stringify(params))
-    return {
-      title: app.globalData.userInfo.nickName+'邀请您绑定',
-      path: '/pages/bind/agree' + JSON.stringify(params),
-      success: function (res) {
-        console.log(res)
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    }
-  }
+  onShareAppMessage: function () { }
 })

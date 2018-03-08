@@ -1,8 +1,10 @@
 <view class='root'>
   <image class='topImage' src='/source/bindTop.png' ></image>
-  <text class='tipsView' >爸妈在哪儿，即刻关注父母位置!</text>
-  <view class="shareToBind">
-    <textarea class='titleInput' placeholder="请输入被邀请人身份后邀请" bindinput='inputTitle'/>
-    <button disabled="{{title.length==0}}" class='bindButton' open-type='share'>邀请爸妈</button>
-  </view>
+  <image class='backHome' bindtap='backHome' src='/source/icon_backhome.png'></image>
+  <text class='tipsView' wx:if="{{name}}"> 我是{{name}}</text>  
+  <text class='tipsView' wx:if="{{name}}"> 我想知道您在哪儿!</text>  
+  <form class='form' bindsubmit="bindFormSubmit">
+    <textarea class='titleInput' wx:if='{{!title}}' placeholder="请输入邀请人身份" name='textarea'/>
+    <button class='bindButton' type="primary" form-type="submit">同意授权</button>
+  </form>
 </view>

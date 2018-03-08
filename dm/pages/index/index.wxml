@@ -44,6 +44,8 @@
 <view class='noDataView' wx:if="{{!memberList[selectIndex].location&&!selected}}">
   <image src='/source/home_nodata.png' class='noImage'></image>
   <view class='cg mt mb'>暂时没有位置信息</view>
+    <image bindtap='suggest' class='suggest' src='/source/icon_suggest.png'>
+    </image>
     <view class='f36 w100'>可能遇到了以下问题</view>
     <view class='f30 w100 mt'>1、您父母可能没有安装【大猫老年桌面】。</view>
     <view class='copybutton mt' bindtap='copy'>复制链接</view>
